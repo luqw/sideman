@@ -4,9 +4,42 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
+
+
+<TableLayout android:id="@+id/TableLayout01" 
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content"
+	android:stretchColumns="1">
+
+<TableRow>
+	<TextView android:id="@+id/TextViewTitle" 
+		android:text="" 
+		android:layout_column="1"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:textColor="#FFFFFFFF"
+		android:textSize="24px">
+
+	</TextView>
+	<TextView android:id="@+id/TextViewInfos" 
+		android:text="" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:textSize="10px">
+	</TextView>
+</TableRow>
+
+<View
+	android:layout_height="2dip"
+	android:background="#FF909090" />
+
+</TableLayout>
+        
+<GridView android:id="@+id/GridViewBars" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content">
+</GridView>
+
+
+
 </LinearLayout>
