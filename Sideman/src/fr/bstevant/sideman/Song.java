@@ -34,10 +34,10 @@ public class Song {
 	}
 	
 	public Bar get(int i) {
-		if (i<=countBars()) {
+		if (i<countBars()) {
 			return bars.get(i);
 		} else {
-			return new Bar(nbpm);
+			return null;
 		}
 	}
 }

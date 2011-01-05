@@ -31,15 +31,16 @@
 
 <View
 	android:layout_height="2dip"
-	android:background="#FF909090" />
+	android:background="@color/light_grey" />
 
 </TableLayout>
         
 <GridView android:id="@+id/GridViewBars" 
 	android:layout_width="wrap_content" 
-	android:layout_height="wrap_content">
+	android:layout_height="wrap_content"
+	android:numColumns="1"
+	android:columnWidth="360dp"
+	android:stretchMode="spacingWidth">
 </GridView>
-
-
 
 </LinearLayout>
