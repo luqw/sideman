@@ -1,10 +1,9 @@
 package fr.bstevant.sideman;
 
-import java.util.ArrayList;
 
 public class Bar {
 	String[] beats;
-	int iNbpm;
+	public int iNbpm;
 	
 	public Bar(int nbpm) {
 		beats = new String[nbpm];
@@ -19,13 +18,12 @@ public class Bar {
 		if (i < iNbpm)
 			beats[i] = chord;
 	}
-
-	public String toString() {
-		String s = "| ";
-		int i;
-		for (i=0; i < iNbpm; i++) {
-			s+=String.format("%8s", beats[i]);
+	
+	public String getBeat(int i) {
+		if (i < iNbpm) {
+			return beats[i];
+		} else {
+			return "";
 		}
-		return s;
 	}
 }
