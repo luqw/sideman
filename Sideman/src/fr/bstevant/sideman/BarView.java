@@ -13,18 +13,30 @@ public class BarView extends TableLayout {
 	private Context context;
 	
 	// Dimension
+	private int widthLine;
 	private int widthBeat;
 	private int nbBarPerLine;
 	private int sizeText;
+	private int progressLineHeight;
 	
-	public BarView(Context c) {
+	public BarView(Context c, int w, int nbpl, Song s) {
 		super(c);
-		this.setMinimumHeight(25);
 		context = c;
 		
-		nbBarPerLine = 2;
-		sizeText = 10;
-		widthBeat = 39;
+		nbBarPerLine = nbpl;
+		widthLine = w;
+
+		widthBeat = (widthLine - nbBarPerLine -1)  / (nbBarPerLine * s.nbpm);
+		sizeText = widthBeat / 4;
+		progressLineHeight = sizeText / 3;
+		
+		int viewLength = widthBeat * nbBarPerLine * s.nbpm + nbBarPerLine + 1;
+		this.setMinimumWidth(viewLength);
+		this.setMinimumHeight(sizeText * 4);
+		
+		
+		
+		//Log.v("SideMan", "w: " + w + " wb: " + widthBeat + "st:" + sizeText + " wl: " + viewLength);
 		
 		// Add rows inside TableLayout
 		TableRow trl1,trl2,trl3;
@@ -36,7 +48,7 @@ public class BarView extends TableLayout {
 		
 		rowChord = new TableRow(c);
 		View v = new View(c);
-		v.setMinimumHeight(13);
+		v.setMinimumHeight(sizeText * 2);
 		v.setMinimumWidth(1);
 		v.setBackgroundResource(R.color.light_grey);
 		rowChord.addView(v);
@@ -49,7 +61,7 @@ public class BarView extends TableLayout {
 		
 		rowBeat = new TableRow(c);
 		v = new View(c);
-		v.setMinimumHeight(3);
+		v.setMinimumHeight(progressLineHeight);
 		v.setMinimumWidth(1);
 		v.setBackgroundResource(R.color.light_grey);
 		rowBeat.addView(v);
@@ -77,18 +89,18 @@ public class BarView extends TableLayout {
 				
 				View v = new View(context);
 				v.setMinimumWidth(widthBeat);
-				v.setMinimumHeight(3);
+				v.setMinimumHeight(progressLineHeight);
 				rowBeat.addView(v);
 			}
 			// Add bar termination line
 			View v = new View(context);
-			v.setMinimumHeight(13);
+			v.setMinimumHeight(sizeText * 2);
 			v.setMinimumWidth(1);
 			v.setBackgroundResource(R.color.light_grey);
 			rowChord.addView(v);
 			
 			v = new View(context);
-			v.setMinimumHeight(3);
+			v.setMinimumHeight(progressLineHeight);
 			v.setMinimumWidth(1);
 			v.setBackgroundResource(R.color.light_grey);
 			rowBeat.addView(v);
@@ -105,7 +117,7 @@ public class BarView extends TableLayout {
 			int idx = 1+i+((b.iNbpm+1) * index);
 			//Log.v("Sideman", "Writing chord to Textview "+idx);
 			View v = rowBeat.getChildAt(1+i+((b.iNbpm+1) * index));
-			v.setBackgroundResource(R.color.light_grey);
+			v.setBackgroundResource(R.color.white);
 		}
 	}
 	

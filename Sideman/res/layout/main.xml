@@ -5,42 +5,64 @@
     android:layout_height="fill_parent"
     >
 
-
-<TableLayout android:id="@+id/TableLayout01" 
+<RelativeLayout android:id="@+id/LayoutTitle" 
 	android:layout_width="fill_parent" 
-	android:layout_height="wrap_content"
-	android:stretchColumns="1">
-
-<TableRow>
+	android:layout_height="wrap_content">
+	
+	
 	<TextView android:id="@+id/TextViewTitle" 
 		android:text="" 
-		android:layout_column="1"
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content"
 		android:textColor="#FFFFFFFF"
-		android:textSize="24px">
+		android:textSize="24px"
+		android:layout_alignParentLeft="true" />
 
-	</TextView>
 	<TextView android:id="@+id/TextViewInfos" 
 		android:text="" 
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content"
-		android:textSize="10px">
-	</TextView>
-</TableRow>
+		android:textSize="10px"
+		android:layout_alignParentRight="true"/>
 
-<View
-	android:layout_height="2dip"
-	android:background="@color/light_grey" />
+	<View 
+		android:layout_width="fill_parent" 
+		android:layout_height="2dip"
+		android:background="@color/light_grey"
+		android:layout_below="@id/TextViewTitle"
+	/>
 
-</TableLayout>
+</RelativeLayout>
+     
+<LinearLayout android:id="@+id/LayoutBars"
+	android:layout_width="fill_parent" 
+	android:layout_height="0px"
+	android:layout_weight="1"
+>
+
+</LinearLayout>
+
+<RelativeLayout
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content">
         
-<GridView android:id="@+id/GridViewBars" 
-	android:layout_width="wrap_content" 
-	android:layout_height="wrap_content"
-	android:numColumns="1"
-	android:columnWidth="360dp"
-	android:stretchMode="spacingWidth">
-</GridView>
+
+	<View android:id="@+id/SpacingBottom" 
+		android:layout_width="fill_parent" 
+		android:layout_height="2dip"
+		android:background="@color/light_grey"
+		android:layout_below="@id/TextViewTitle"
+	/>
+
+	<TextView android:id="@+id/TextViewToolBar" 
+		android:text="ToolBar" 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:textColor="#FFFFFFFF"
+		android:textSize="16px" 
+		android:layout_below="@id/SpacingBottom"/>
+
+
+</RelativeLayout>
 
 </LinearLayout>

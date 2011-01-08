@@ -39,6 +39,10 @@ public class SongReader {
 		return theSong.countBars();
 	}
 	
+	public Song getSong() {
+		return theSong;
+	}
+	
 	public Bar get(int i) {
 		return theSong.get(i);
 	}
