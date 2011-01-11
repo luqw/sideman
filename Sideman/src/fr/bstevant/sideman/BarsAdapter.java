@@ -9,14 +9,15 @@ import android.widget.BaseAdapter;
 public class BarsAdapter extends BaseAdapter {
 	private Context mContext;
 	private Song mSong;
-	private int nbBarPerLine = 2;
+	private int nbBarPerLine;
 	private int nbLines;
 	private int width;
 	
-	public BarsAdapter(Context c, Song song, int w) {
+	public BarsAdapter(Context c, Song song, int w, int nbpl) {
 		mContext = c;
 		mSong = song;
 		width = w;
+		nbBarPerLine = nbpl;
 		nbLines = mSong.countBars() / nbBarPerLine;
 		if ((mSong.countBars() % nbBarPerLine) != 0) {
 			nbLines++;

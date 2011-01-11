@@ -54,6 +54,13 @@
 		android:layout_below="@id/TextViewTitle"
 	/>
 
+
+	<ZoomControls android:id="@+id/ZoomControls"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_below="@id/SpacingBottom"/>
+
 	<TextView android:id="@+id/TextViewToolBar" 
 		android:text="ToolBar" 
 		android:layout_width="wrap_content" 
@@ -61,8 +68,7 @@
 		android:textColor="#FFFFFFFF"
 		android:textSize="16px" 
 		android:layout_below="@id/SpacingBottom"/>
-
-
+		
 </RelativeLayout>
 
 </LinearLayout>

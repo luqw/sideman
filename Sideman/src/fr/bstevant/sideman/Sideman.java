@@ -10,6 +10,7 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ZoomControls;
 
 public class Sideman extends Activity {
 	SongView mSongView;
@@ -18,7 +19,9 @@ public class Sideman extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        mSongView = new SongView(this);
+		ZoomControls zoom = ((ZoomControls)findViewById(R.id.ZoomControls));
+
+        mSongView = new SongView(this, zoom);
         
         LinearLayout layoutBars = ((LinearLayout)findViewById(R.id.LayoutBars));
         layoutBars.addView((View)mSongView);
