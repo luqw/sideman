@@ -1,44 +1,52 @@
 package fr.bstevant.sideman;
 
+import java.io.File;
+
 import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ZoomControls;
 
-public class Sideman extends Activity {
-	SongView mSongView;
-    /** Called when the activity is first created. */
+public class Sideman extends ListActivity {
+	private File[] files;
+	
+	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-		ZoomControls zoom = ((ZoomControls)findViewById(R.id.ZoomControls));
-
-        mSongView = new SongView(this, zoom);
+        setContentView(R.layout.sideman_filechooser);
         
-        LinearLayout layoutBars = ((LinearLayout)findViewById(R.id.LayoutBars));
-        layoutBars.addView((View)mSongView);
         
-        ViewTreeObserver vto = layoutBars.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(mSongView);
-        
-        SongReader song = new SongReader("/oleo.xml");
-        if (!song.isEmpty()) {	
-        	TextView title = ((TextView)findViewById(R.id.TextViewTitle));
-        	title.setText(song.theSong.name);
-        	TextView infos = ((TextView)findViewById(R.id.TextViewInfos));
-        	infos.setText("Meter: "+song.theSong.meter+" Tempo: "+song.theSong.tempo);
-        	
-        	mSongView.setSong(song.theSong);
+        File sidemandir = new File("/sdcard/Sideman");
+        if (sidemandir.exists()) {
+        	files = sidemandir.listFiles();
+        	if (files != null) {
+        		Log.v("Sideman", files.toString());
+        		setListAdapter(new ArrayAdapter<File>(this, R.layout.list_item, files));
+        	} else {
+        		Log.v("Sideman", "Empty file list");        		
+        	}
+        } else {
+    		Log.v("Sideman", "Directory Sideman does not exist");
         }
-
     }
     
+    public void onListItemClick(ListView lv, View v, int position, long id) {
+    	Intent intentPlayer = new Intent(this, SidemanPlayer.class);
+    	String name = files[position].getName();
+    	String sdcardName = "/Sideman/" + name;
+    	intentPlayer.putExtra("filename", sdcardName);
+    	startActivity(intentPlayer);
+    }
 }
