@@ -1,0 +1,1 @@
+Sideman is a tool for jazz musicians running on mobile devices (preferably on Android). This tool displays bars of a song with chords. It will include live scrolling of the bars according to tempo with metronome.
